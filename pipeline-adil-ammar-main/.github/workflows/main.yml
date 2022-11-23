@@ -1,0 +1,74 @@
+# This is a basic workflow to help you get started with Actions
+
+name: CI Testing
+
+# Controls when the action will run. 
+on: 
+  # Triggers the workflow on push or pull request events but only for the main branch
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  build:
+    # The type of runner that the job will run on
+    runs-on: self-hosted
+
+    timeout-minutes: 20
+    
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
+
+      # Runs a single command using the runners shell
+      - name: Compiling repo
+        run: |
+          make clean
+          make
+
+      - name: Executing code - case 1 
+        run: |
+          ./pipesim -i traces/instruction1.txt &> output
+          diff output .github/test/instruction1-NoForwarding
+        
+      - name: Executing code - case 2 
+        run: |
+          ./pipesim -i traces/instruction2.txt &> output
+          diff output .github/test/instruction2-NoForwarding
+
+      - name: Executing code - case 3 
+        run: |
+          ./pipesim -i traces/instruction3.txt &> output
+          diff output .github/test/instruction3-NoForwarding
+      
+      - name: Executing code - case 4 
+        run: |
+          ./pipesim -i traces/instruction1.txt -f &> output
+          diff output .github/test/instruction1-Forwarding
+
+      - name: Executing code - case 5 
+        run: |
+          ./pipesim -i traces/instruction2.txt -f &> output
+          diff output .github/test/instruction2-Forwarding
+
+      - name: Executing code - case 6 
+        run: |
+          ./pipesim -i traces/instruction3.txt -f &> output
+          diff output .github/test/instruction3-Forwarding
+
+  
+  cleanup:
+    
+    runs-on: self-hosted
+    if: always()
+    needs: build
+    steps:
+      - name: Clean up
+        run: echo "Cleaning up previous run"; rm -rf "${{ github.workspace }}";

@@ -1,0 +1,40 @@
+Loading application...traces/instruction2.txt
+Read file completed!!
+Printing Application: 
+ADD r1 r2 r3
+SW r1 r2
+LW r7 r2
+ADD r5 r7 r1
+LW r8 r2
+SW r7 r8
+ADD r8 r8 r2
+LW r9 r8
+SW r9 r8
+Initializing pipeline...
+Cycle	IF		ID		EXEC		MEM		WB
+0	*         	*         	*         	*         	*         
+1	ADD r1 r2 r3	*         	*         	*         	*         
+2	SW r1 r2	ADD r1 r2 r3	*         	*         	*         
+3	LW r7 r2	SW r1 r2	ADD r1 r2 r3	*         	*         
+4	LW r7 r2	SW r1 r2	*         	ADD r1 r2 r3	*         
+5	LW r7 r2	SW r1 r2	*         	*         	ADD r1 r2 r3
+6	ADD r5 r7 r1	LW r7 r2	SW r1 r2	*         	*         
+7	LW r8 r2	ADD r5 r7 r1	LW r7 r2	SW r1 r2	*         
+8	LW r8 r2	ADD r5 r7 r1	*         	LW r7 r2	SW r1 r2
+9	LW r8 r2	ADD r5 r7 r1	*         	*         	LW r7 r2
+10	SW r7 r8	LW r8 r2	ADD r5 r7 r1	*         	*         
+11	ADD r8 r8 r2	SW r7 r8	LW r8 r2	ADD r5 r7 r1	*         
+12	ADD r8 r8 r2	SW r7 r8	*         	LW r8 r2	ADD r5 r7 r1
+13	ADD r8 r8 r2	SW r7 r8	*         	*         	LW r8 r2
+14	LW r9 r8	ADD r8 r8 r2	SW r7 r8	*         	*         
+15	SW r9 r8	LW r9 r8	ADD r8 r8 r2	SW r7 r8	*         
+16	SW r9 r8	LW r9 r8	*         	ADD r8 r8 r2	SW r7 r8
+17	SW r9 r8	LW r9 r8	*         	*         	ADD r8 r8 r2
+18	*         	SW r9 r8	LW r9 r8	*         	*         
+19	*         	SW r9 r8	*         	LW r9 r8	*         
+20	*         	SW r9 r8	*         	*         	LW r9 r8
+21	*         	*         	SW r9 r8	*         	*         
+22	*         	*         	*         	SW r9 r8	*         
+23	*         	*         	*         	*         	SW r9 r8
+24	*         	*         	*         	*         	*         
+Completed in 23 cycles

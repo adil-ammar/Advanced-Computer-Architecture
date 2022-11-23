@@ -1,0 +1,15 @@
+------------------------------
+Cache size: 262144 Bytes
+Block Size: 16 Bytes
+Sets: 4096
+Ways: 4
+Tag bits: 16
+Index bits: 12
+Offset bits: 4
+------------------------------
+Hit rate: 98.97%
+Miss rate: 1.03%
+Hits: 643312
+total: 650000
+------------------------------
+

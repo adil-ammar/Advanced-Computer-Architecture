@@ -1,0 +1,33 @@
+Loading application...traces/instruction1.txt
+Read file completed!!
+Printing Application: 
+ADD r1 r2 r3
+SUB r2 r3 r4
+MULT r3 r1 r5
+DIV r4 r3 r6
+LW r5 r4
+SW r5 r7
+BNE r7 r8
+Initializing pipeline...
+Cycle	IF		ID		EXEC		MEM		WB
+0	*         	*         	*         	*         	*         
+1	ADD r1 r2 r3	*         	*         	*         	*         
+2	SUB r2 r3 r4	ADD r1 r2 r3	*         	*         	*         
+3	MULT r3 r1 r5	SUB r2 r3 r4	ADD r1 r2 r3	*         	*         
+4	DIV r4 r3 r6	MULT r3 r1 r5	SUB r2 r3 r4	ADD r1 r2 r3	*         
+5	DIV r4 r3 r6	MULT r3 r1 r5	*         	SUB r2 r3 r4	ADD r1 r2 r3
+6	LW r5 r4	DIV r4 r3 r6	MULT r3 r1 r5	*         	SUB r2 r3 r4
+7	LW r5 r4	DIV r4 r3 r6	*         	MULT r3 r1 r5	*         
+8	LW r5 r4	DIV r4 r3 r6	*         	*         	MULT r3 r1 r5
+9	SW r5 r7	LW r5 r4	DIV r4 r3 r6	*         	*         
+10	SW r5 r7	LW r5 r4	*         	DIV r4 r3 r6	*         
+11	SW r5 r7	LW r5 r4	*         	*         	DIV r4 r3 r6
+12	BNE r7 r8	SW r5 r7	LW r5 r4	*         	*         
+13	BNE r7 r8	SW r5 r7	*         	LW r5 r4	*         
+14	BNE r7 r8	SW r5 r7	*         	*         	LW r5 r4
+15	*         	BNE r7 r8	SW r5 r7	*         	*         
+16	*         	*         	BNE r7 r8	SW r5 r7	*         
+17	*         	*         	*         	BNE r7 r8	SW r5 r7
+18	*         	*         	*         	*         	BNE r7 r8
+19	*         	*         	*         	*         	*         
+Completed in 18 cycles
